@@ -11,16 +11,12 @@ class ProductManager {
         return lastProduct.id + 1
     }
 
-    getCode = (code) => {
-        const validarCode = this.products.code
-        return this.products.some((product)=> product.code == code)
-    }
-
     getProducts = () => { return this.products}
 
     addProducts = (title, description, price, thumbnail, code, stock) => {
-        if (this.getCode(code)){
-            return console.log("el producto ya existe")        }
+        if (!title || !description || !price || !thumbnail || !code || !stock ) return console.log("Campos incompletos")
+       
+        if (this.products.some((product)=>product.code === code)) return console.log ("El producto ya existe")
         
         const id = this.getNextID()
 
@@ -41,5 +37,6 @@ class ProductManager {
 
 const productManager = new ProductManager()
 productManager.addProducts('calza', 'negra', 20000, 'img', '1452', 5 )
-productManager.addProducts('remera', 'blanca', 15000, 'img', '1455', 5 )
+productManager.addProducts('remera', 'blanca', 15000, 'img', '1452', 5 )
+productManager.addProducts('remera', 'gris', 18000, '', '1455', 7 )
 console.log(productManager.getProducts())
