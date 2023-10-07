@@ -77,6 +77,22 @@ getProductById = async (id)=>{
      } 
     }
 
+deleteProduct = async (id) =>{
+    const products = await this.getProducts()
+    // const eliminarProduct = products.indexOf((product)=> product.id === parseInt(id))
+    // if (eliminarProduct === -1){
+    //     console.log ('no hay productos para eliminar')
+    // } else {products.splice (eliminarProduct, 1)}
+    const nuevosProducts = products.filter ((producto)=>producto.id !== id)
+    try{
+        await fs.promises.writeFile(this.filename, JSON.stringify(nuevosProducts))
+        console.log('producto eliminado', nuevosProducts)
+    }catch (error){
+        console.error('no se elimino ningun producto', error)
+    }
+}
+
+
 // updateProductById = async (id, cambio) =>{
 //     const products = await this.getProducts()
 //     for (let key in products){
@@ -103,6 +119,8 @@ async function run() {
     await managerProduct.createProduct('remeras','remera blanca',16000,'.img.jpg', 52, 22)
     console.log(await managerProduct.getProducts())
     await managerProduct.getProductById(3)
+    await managerProduct.deleteProduct(1)
+    
     // await managerProduct.updateProductById(2,{title:'buso'})
 }
 run()
