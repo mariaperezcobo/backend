@@ -79,37 +79,57 @@ getProductById = async (id)=>{
 
 deleteProduct = async (id) =>{
     const products = await this.getProducts()
-    // const eliminarProduct = products.indexOf((product)=> product.id === parseInt(id))
-    // if (eliminarProduct === -1){
-    //     console.log ('no hay productos para eliminar')
-    // } else {products.splice (eliminarProduct, 1)}
+   
     const nuevosProducts = products.filter ((producto)=>producto.id !== id)
     try{
         await fs.promises.writeFile(this.filename, JSON.stringify(nuevosProducts))
-        console.log('producto eliminado', nuevosProducts)
+        console.log('Quedan los siguientes productos:', nuevosProducts)
+        
     }catch (error){
         console.error('no se elimino ningun producto', error)
     }
 }
 
 
-// updateProductById = async (id, cambio) =>{
-//     const products = await this.getProducts()
-//     for (let key in products){
-//         if (products[key].id === id){
-//             products[key].title === cambio.title ? cambio.title : products[key].title
-//         }
-//     }
-//     try {
-//         await fs.promises.writeFile(this.filename, JSON.stringify(products))
-//     } catch(error){
-//         console.error(error)
-//     }
-//     }
+updateProductById = async (id, cambio) =>{
+    const products = await this.getProducts()
+    const productModificado = this.products.findIndex (producto => producto.id === id)
+    
+    if (productModificado === -1){ console.log('el producto a modificar no existe')}
 
- }
+    if (cambio.title !== undefined){
+        products[productModificado].title = cambio.title
+    }
+    if (cambio.description !== undefined){
+        products[productModificado].description = cambio.description
+    }
+    if (cambio.price !== undefined) {
+        products[productModificado].price = cambio.price
+    }
+    if (cambio.thumbnail !== undefined){
+        products[productModificado].thumbnail = cambio.thumbnail
+    }
+    if (cambio.code !== undefined){
+        products[productModificado].code = cambio.code
+    }
+    if (cambio.stock !== undefined){
+        products[productModificado].stock = cambio.stock
+    }
 
 
+    console.log('el prod a modificar es', productModificado)
+    
+
+    try {
+        await fs.promises.writeFile(this.filename, JSON.stringify(products))
+        console.log('hola')
+    } catch(error){
+        console.error(error)
+    }
+    }
+
+ 
+}
 
 async function run() {
     const managerProduct = new ProductManager ('./products2.json')
@@ -118,10 +138,11 @@ async function run() {
    
     await managerProduct.createProduct('remeras','remera blanca',16000,'.img.jpg', 52, 22)
     console.log(await managerProduct.getProducts())
-    await managerProduct.getProductById(3)
-    await managerProduct.deleteProduct(1)
+    await managerProduct.getProductById(2)
+    await managerProduct.deleteProduct(4)
     
-    // await managerProduct.updateProductById(2,{title:'buso'})
+    await managerProduct.updateProductById(2,{title:'buso', price:2})
+    console.log(await managerProduct.getProducts())
 }
 run()
 
