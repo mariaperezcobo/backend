@@ -41,8 +41,6 @@ createProduct= async (title, description, price, thumbnail, code, stock) =>{
 
     if (!title || !description || !price || !thumbnail || !code || !stock ) return console.log("Campos incompletos")
     
-    
-    
     if (this.products.some((product)=> product.code === code)) return console.log ("El producto ya existe")
 
 
@@ -117,12 +115,12 @@ updateProductById = async (id, cambio) =>{
     }
 
 
-    console.log('el prod a modificar es', productModificado)
+    console.log('el index del prod a modificar es', productModificado)
     
 
     try {
         await fs.promises.writeFile(this.filename, JSON.stringify(products))
-        console.log('hola')
+
     } catch(error){
         console.error(error)
     }
@@ -139,9 +137,8 @@ async function run() {
     await managerProduct.createProduct('remeras','remera blanca',16000,'.img.jpg', 52, 22)
     console.log(await managerProduct.getProducts())
     await managerProduct.getProductById(2)
-    await managerProduct.deleteProduct(4)
-    
-    await managerProduct.updateProductById(2,{title:'buso', price:2})
+    await managerProduct.deleteProduct(1)
+    await managerProduct.updateProductById(2,{title:'buso', price:28000})
     console.log(await managerProduct.getProducts())
 }
 run()
