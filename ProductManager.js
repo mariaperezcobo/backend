@@ -52,7 +52,7 @@ async getProducts(limit){
 
     }catch (error){
         console.error('error', error)
-        return []
+        
     }
     }
 
@@ -62,9 +62,10 @@ getProductById = async (idProduct)=>{
         const products = await this.getProducts()
 
         const validarID = await products.find(product => product.id === idProduct)
-        if (!validarID) {console.log("el producto no exixte")}
+        if (!validarID) {console.log("el producto no existe")}
          else {
             console.log('el producto buscado es', {validarID})
+            
          } 
          return validarID
 

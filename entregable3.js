@@ -1,6 +1,6 @@
 import express from 'express'
 
-import ProductManager from './ProductManager2.js'
+import ProductManager from './ProductManager.js'
 
 const app = express()
 const productManager = new ProductManager()
