@@ -1,1 +1,41 @@
-[{"id":1,"title":"calzas","description":"calzas negras","price":20000,"thumbnail":".img.jpg","code":61,"stock":29},{"id":2,"title":"buso","description":"remera gris","price":28000,"thumbnail":".img.jpg","code":2,"stock":15},{"id":3,"title":"remeras","description":"remera blanca","price":16000,"thumbnail":".img.jpg","code":52,"stock":22}]
+[
+    {"id":1,
+    "title":"Calzas Lisboa",
+    "description":"Calzas estampadas",
+    "price":20000,
+    "thumbnail":".img.jpg",
+    "code":61,
+    "stock":29},
+
+    {"id":2,
+    "title":"Calzas Londres",
+    "description":"Calzas grises",
+    "price":28000,
+    "thumbnail":".img.jpg",
+    "code":2,
+    "stock":15},
+
+    {"id":3,
+    "title":"Calzas Madrid",
+    "description":"Calzas estampadas blancas y azules",
+    "price":16000,
+    "thumbnail":".img.jpg",
+    "code":52,
+    "stock":22},
+
+    {"id":4,
+    "title":"Remera Miami",
+    "description":"Remera banca y gris",
+    "price":16000,
+    "thumbnail":".img.jpg",
+    "code":15,
+    "stock":22},
+
+    {"id":5,
+    "title":"Remera Buzios",
+    "description":"Remera rosa",
+    "price":16000,
+    "thumbnail":".img.jpg",
+    "code":53,
+    "stock":22}
+]
